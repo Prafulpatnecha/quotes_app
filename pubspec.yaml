@@ -90,5 +90,34 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  fonts:
+     - family: f1
+       fonts:
+         - asset: 'assets/fonts/f1.ttf'
+     - family: f2
+       fonts:
+         - asset: 'assets/fonts/f2.ttf'
+     - family: f3
+       fonts:
+         - asset: 'assets/fonts/f3.ttf'
+           style: italic
+     - family: f4
+       fonts:
+         - asset: 'assets/fonts/f4.ttf'
+     - family: f5
+       fonts:
+         - asset: 'assets/fonts/f5.ttf'
+     - family: f6
+       fonts:
+         - asset: 'assets/fonts/f6.ttf'
+     - family: f7
+       fonts:
+         - asset: 'assets/fonts/f7.ttf'
+     - family: f8
+       fonts:
+         - asset: 'assets/fonts/f8.ttf'
+     - family: f9
+       fonts:
+         - asset: 'assets/fonts/f9.ttf'
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
