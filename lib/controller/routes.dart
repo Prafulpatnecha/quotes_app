@@ -10,5 +10,6 @@ class AppRoutes
     '/':(context)=>const HomePage(),
     '/view':(context)=>const OnScreen(),
     '/backview':(context)=>const BackGChange(),
+    '/screen':(context)=>const ScreenShort(),
   };
 }

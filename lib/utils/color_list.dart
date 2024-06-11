@@ -13,28 +13,27 @@ List colorList=[
     'color':Colors.cyanAccent,
   },
   {
-    'color':Colors.white,
+    'color':Colors.pinkAccent,
   },
   {
-    'color':Colors.white,
+    'color':Colors.black,
   },
   {
-    'color':Colors.white,
+    'color':Colors.deepPurple,
   },
   {
-    'color':Colors.white,
+    'color':Colors.greenAccent,
   },
   {
-    'color':Colors.white,
+    'color':Colors.deepOrange,
   },
   {
-    'color':Colors.white,
+    'color':Colors.yellowAccent,
   },
   {
-    'color':Colors.white,
+    'color':Colors.blueGrey,
   },
   {
-    'color':Colors.white,
+    'color':Colors.tealAccent,
   },
-
 ];

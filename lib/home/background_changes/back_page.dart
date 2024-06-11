@@ -1,12 +1,12 @@
 import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:quotes_app/home/home_screen/home_page.dart';
+import 'package:quotes_app/utils/color_list.dart';
 import 'package:quotes_app/utils/globle_values.dart';
-
+import 'package:quotes_app/utils/quotes_model.dart';
+QuotesModel? quotesModelColor;
 class BackGChange extends StatefulWidget {
   const BackGChange({super.key});
 
@@ -17,9 +17,10 @@ class BackGChange extends StatefulWidget {
 class _BackGChangeState extends State<BackGChange> {
   @override
   Widget build(BuildContext context) {
+    quotesModelColor=QuotesModel.toList(iList: colorList);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    setState(() {});
+    // setState(() {});
     // quotesModelImage=QuotesModel.toList(iList: imagesList);
     return Scaffold(
       body: Stack(
@@ -103,15 +104,15 @@ class _BackGChangeState extends State<BackGChange> {
                 ),
                 Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         SizedBox(
                           width: 10,
                         ),
-                        const Text(
+                        Text(
                           'Font',
                           style: TextStyle(
                               color: Colors.white,
@@ -120,7 +121,7 @@ class _BackGChangeState extends State<BackGChange> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     SingleChildScrollView(
@@ -141,7 +142,7 @@ class _BackGChangeState extends State<BackGChange> {
                                           overlayColor: WidgetStateProperty.all(
                                               Colors.white12),
                                           side: WidgetStateProperty.all(
-                                              BorderSide(
+                                              const BorderSide(
                                                   color: Colors.white30))),
                                       onPressed: () {},
                                       child: Text(
@@ -162,7 +163,7 @@ class _BackGChangeState extends State<BackGChange> {
                                           overlayColor: WidgetStateProperty.all(
                                               Colors.white12),
                                           side: WidgetStateProperty.all(
-                                              BorderSide(
+                                              const BorderSide(
                                                   color: Colors.white30))),
                                       onPressed: () {
                                         setState(() {
@@ -188,13 +189,28 @@ class _BackGChangeState extends State<BackGChange> {
                       child: Row(
                         children: [
                           ...List.generate(
-                            30,
+                            quotesModelColor!.quotesModelList.length,
                             (index) => Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                color: Colors.red,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                  colorFilled=quotesModelColor!.quotesModelList[index].color!;
+                                  });
+                                },
+                                child: (colorFilled==quotesModelColor!.quotesModelList[index].color)?Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                  color: quotesModelColor!.quotesModelList[index].color,
+                                    border: Border.all(color: Colors.white)
+                                  ),
+                                  child: const Icon(Icons.done),
+                                ):Container(
+                                  height: 50,
+                                  width: 50,
+                                  color: quotesModelColor!.quotesModelList[index].color,
+                                ),
                               ),
                             ),
                           ),

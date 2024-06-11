@@ -9,6 +9,7 @@ class MyQuotesApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/view',
+      theme: ThemeData.dark(),
       routes: AppRoutes.routes,
     );
   }
