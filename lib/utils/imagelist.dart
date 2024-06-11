@@ -132,3 +132,46 @@ List imagesList=[
         'image':const AssetImage('assets/images/live8.jpg'),
     },
 ];
+
+List imageCategory=[
+    {
+        'image':const AssetImage('assets/img/f_(2).png'),
+        'category': 'Happiness'
+    },
+    {
+        'image':const AssetImage('assets/img/f_(9).png'),
+        'category': 'Love',
+    },
+    {
+        'image':const AssetImage('assets/img/f_(28).png'),
+        'category': 'Friendship',
+    },
+    {
+        'image':const AssetImage('assets/img/f_(3).png'),
+        'category': 'Success',
+    },
+    {
+        'image':const AssetImage('assets/img/f_(11).png'),
+        'category': 'Attitude',
+    },
+    {
+        'image':const AssetImage('assets/img/f_(40).png'),
+        'category': 'Perseverance',
+    },
+    {
+        'image':const AssetImage('assets/img/f_(12).png'),
+        'category': 'Thought-provoking',
+    },
+    {
+        'image':const AssetImage('assets/img/f_(14).png'),
+        'category': 'Funny',
+    },
+    {
+        'image':const AssetImage('assets/img/f_(26).png'),
+        'category': 'Motivational',
+    },
+    {
+        'image':const AssetImage('assets/img/f_(46).png'),
+        'category': 'Inspirational',
+    },
+];

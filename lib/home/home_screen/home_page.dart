@@ -1,11 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:ui' as ui;
-// import 'package:share_plus/share_plus.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:share_extend/share_extend.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:quotes_app/utils/font_list_globle.dart';
 import 'package:quotes_app/utils/imagelist.dart';
 import 'package:quotes_app/utils/quoteslist.dart';
@@ -64,15 +66,32 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     fullUsingColumn(w, index),
                     (optionAdd)
-                        ? containerButton(
+                        ? (quotesModelText!.quotesModelList[index].fav==false)?containerButton(
                             iconfind: const Icon(
                               Icons.bookmark_border,
                               color: Colors.white,
                               size: 40,
                             ),
                             alignmentFind: const Alignment(0, 0.72),
-                            onPass: () {})
-                        : Container(),
+                            onPass: () {
+                              setState(() {
+                                favEmpty.add(quotesListGroup[index]);
+                                quotesListGroup[index]['fav']=true;
+                              });
+                            })
+                        : containerButton(
+                        iconfind: const Icon(
+                          Icons.bookmark,
+                          color: Colors.red,
+                          size: 40,
+                        ),
+                        alignmentFind: const Alignment(0, 0.72),
+                        onPass: () {
+                          // setState(() {
+                          // quotesListGroup[index]['fav']=false;
+                          // });
+                          Navigator.of(context).pushNamed('/book');
+                        }):Container(),
                   ],
                 );
               },
@@ -143,7 +162,9 @@ class _HomePageState extends State<HomePage> {
                             size: 40,
                           ),
                           alignmentFind: const Alignment(0.62, 0.88),
-                          onPass: () {}),
+                          onPass: () {
+                            Navigator.of(context).pushNamed('/category');
+                          }),
                       containerButton(
                           iconfind: const Icon(
                             Icons.copy,
@@ -212,24 +233,21 @@ class _ScreenShortState extends State<ScreenShort> {
   @override
   Widget build(BuildContext context) {
     Timer.periodic(const Duration(seconds: 1), (timer) async {
-      Navigator.of(context).pop();
-      if(imageBool==true){
+      // Navigator.of(context).pop();
       RenderRepaintBoundary boundary = imageKey.currentContext!
           .findRenderObject() as RenderRepaintBoundary;
       ui.Image imageUi = await boundary.toImage();
       ByteData? byteData =
-          await imageUi.toByteData(format: ui.ImageByteFormat.png);
-        ImageGallerySaver.saveImage(byteData!.buffer.asUint8List());
+      await imageUi.toByteData(format: ui.ImageByteFormat.png);
+      Uint8List img=byteData!.buffer.asUint8List();
+      if(imageBool==true){
+        ImageGallerySaver.saveImage(img);
         }else{
-        // XFile xFile=await XFile();
-        // final result = await Share.shareXFiles([XFile(imageUi.path)], text: 'Great picture');
-        //
-        // if (result.status == ShareResultStatus.success) {
-        //   print('Thank you for sharing the picture!');
-        // }
-        // Share.shareXFiles([XFile('assets/images/d1.jpg')], text: 'Great picture');
+        final path=getApplicationCacheDirectory();
+        File file=File("${path}/img.png");
+        file.writeAsBytes(img);
+        ShareExtend.share(file.path, "image");
       }
-
     },);
         // Share.share('check out my website https://example.com');
     double height = MediaQuery.of(context).size.height;
