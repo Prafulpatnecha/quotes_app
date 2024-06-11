@@ -32,7 +32,7 @@ class _BookScreenState extends State<BookScreen> {
               Navigator.of(context).pushNamed('/view-category');
             },
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(bottom: BorderSide(color: Colors.white)),
               ),
               child: ListTile(
@@ -43,7 +43,7 @@ class _BookScreenState extends State<BookScreen> {
                     favEmpty[index]['fav']=false;
                     favEmpty.removeAt(index);
                   });
-                },icon: Icon(Icons.bookmark,color: Colors.red,),),
+                },icon: const Icon(Icons.bookmark,color: Colors.red,),),
               ),
             ),
           ),),

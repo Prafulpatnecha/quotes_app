@@ -243,8 +243,8 @@ class _ScreenShortState extends State<ScreenShort> {
       if(imageBool==true){
         ImageGallerySaver.saveImage(img);
         }else{
-        final path=getApplicationCacheDirectory();
-        File file=File("${path}/img.png");
+        final path=await getApplicationCacheDirectory();
+        File file=File("${path.path}/img.png");
         file.writeAsBytes(img);
         ShareExtend.share(file.path, "image");
       }

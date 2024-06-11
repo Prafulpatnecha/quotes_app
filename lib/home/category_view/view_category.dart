@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quotes_app/utils/quotes_model.dart';
 import '../../utils/globle_values.dart';
-import '../funtions_creating.dart';
 import '../home_screen/home_page.dart';
 
 QuotesModel? quotesModelEmpty;
