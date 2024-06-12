@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quotes_app/utils/quotes_model.dart';
@@ -17,13 +19,13 @@ class ViewCategory extends StatefulWidget {
 class _ViewCategoryState extends State<ViewCategory> {
   @override
   Widget build(BuildContext context) {
-    // Timer(
-    //   const Duration(seconds: 1),
-    //       () {
-    //     setState(() {
-    //     });
-    //   },
-    // );
+    Timer.periodic(
+      const Duration(seconds: 1),
+          (timer) {
+        setState(() {
+        });
+      },
+    );
     if(shareBool==true)
       {
     quotesModelEmpty = QuotesModel.toList(iList: emptyList);
