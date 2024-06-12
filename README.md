@@ -20,7 +20,7 @@ samples, guidance on mobile development, and a full API reference.
 <hr>
 <p>
 <a href ="">
-<img src="" width="22%" Height="35%">
+<img src="https://github.com/Prafulpatnecha/quotes_app/blob/master/Screenshot_20240612_195152.png" width="22%" Height="35%">
 <img src="https://github.com/Prafulpatnecha/quotes_app/blob/master/Screenshot_20240612_193552.png" width="22%" Height="35%">
 <img src="https://github.com/Prafulpatnecha/quotes_app/blob/master/Screenshot_20240612_193736.png" width="22%" Height="35%">
 <img src="https://github.com/Prafulpatnecha/quotes_app/blob/master/Screenshot_20240612_193752.png" width="22%" Height="35%">
@@ -29,6 +29,7 @@ samples, guidance on mobile development, and a full API reference.
 <img src="https://github.com/Prafulpatnecha/quotes_app/blob/master/Screenshot_20240612_193918.png" width="22%" Height="35%">
 <img src="https://github.com/Prafulpatnecha/quotes_app/blob/master/Screenshot_20240612_193953.png" width="22%" Height="35%">
 <img src="https://github.com/Prafulpatnecha/quotes_app/blob/master/Screenshot_20240612_194008.png" width="22%" Height="35%">
+<img src="https://github.com/Prafulpatnecha/quotes_app/assets/144161200/c88fe4f8-3d18-4c16-ae95-791d733690df" width="22%" Height="35%">
 </a>
 </p>
 <hr>
