@@ -17,6 +17,9 @@ class _BookScreenState extends State<BookScreen> {
     double h=MediaQuery.of(context).size.height;
     double w=MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+
+      ),
         body:Container(
           height: h,
           width: w,
@@ -27,8 +30,8 @@ class _BookScreenState extends State<BookScreen> {
           ),
           child: ListView.builder(itemCount: favEmpty.length,itemBuilder: (context, index) => GestureDetector(
             onTap: () {
-              emptyList.clear();
-              emptyList.add(favEmpty[index]);
+              favEmpty[index];
+              shareBool=false;
               Navigator.of(context).pushNamed('/view-category');
             },
             child: Container(

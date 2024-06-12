@@ -205,7 +205,7 @@ class _BackGChangeState extends State<BackGChange> {
                                   color: quotesModelColor!.quotesModelList[index].color,
                                     border: Border.all(color: Colors.white)
                                   ),
-                                  child: const Icon(Icons.done),
+                                  child: const Icon(Icons.done,color: Colors.black,),
                                 ):Container(
                                   height: 50,
                                   width: 50,

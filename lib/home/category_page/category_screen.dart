@@ -44,6 +44,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     setState(() {
                       emptyList.clear();
                       setState(() {
+                        shareBool=true;
                       for(int i=0;i<quotesModelText!.quotesModelList.length;i++)
                         {
                           if(quotesModelCategory!.quotesModelList[index].category==quotesModelText!.quotesModelList[i].category)
@@ -52,8 +53,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           }
                         }
 
-                      });
                       Navigator.of(context).pushNamed('/view-category');
+                      });
                     });
                   },
                   child: Container(

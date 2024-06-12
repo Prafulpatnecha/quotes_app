@@ -9,3 +9,6 @@ GlobalKey imageKey=GlobalKey();
 bool imageBool=true;
 List emptyList=[];
 List favEmpty=[];
+bool shareBool=true;
+String shareTextFind='';
+String shareTextFindTwo='';

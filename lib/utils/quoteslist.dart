@@ -30,7 +30,7 @@ List quotesListGroup = [
   },
   {
     'fav':false,
-    "category": "Love",
+    "category": "Friendship",
     "quote": "Love is not about possession. It is about appreciation.",
     "author": "Osho"
   },

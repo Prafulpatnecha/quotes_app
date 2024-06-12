@@ -1,10 +1,9 @@
-import 'dart:async';
 // import 'package:share_plus/share_plus.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quotes_app/utils/quotes_model.dart';
 import '../../utils/globle_values.dart';
+import '../../utils/quoteslist.dart';
 import '../home_screen/home_page.dart';
 
 QuotesModel? quotesModelEmpty;
@@ -19,14 +18,20 @@ class ViewCategory extends StatefulWidget {
 class _ViewCategoryState extends State<ViewCategory> {
   @override
   Widget build(BuildContext context) {
-    Timer(
-      const Duration(seconds: 1),
-          () {
-        setState(() {
-        });
-      },
-    );
+    // Timer(
+    //   const Duration(seconds: 1),
+    //       () {
+    //     setState(() {
+    //     });
+    //   },
+    // );
+    if(shareBool==true)
+      {
     quotesModelEmpty = QuotesModel.toList(iList: emptyList);
+      }
+    else{
+    quotesModelEmpty = QuotesModel.toList(iList: favEmpty);
+    }
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -40,12 +45,12 @@ class _ViewCategoryState extends State<ViewCategory> {
         ),
         child: Stack(
           children: [
-            CarouselSlider.builder(
+            PageView.builder(
+              scrollDirection: Axis.vertical,
               itemCount: quotesModelEmpty!.quotesModelList.length,
-              options:
-              CarouselOptions(height: h, scrollDirection: Axis.vertical),
-              itemBuilder: (BuildContext context, int index, int realIndex) {
-                selectIndexCopy = index - 1;
+              // options:
+              // CarouselOptions(height: h, scrollDirection: Axis.vertical),
+              itemBuilder: (context, index) {
                 return Stack(
                   children: [
                     Column(
@@ -86,127 +91,170 @@ class _ViewCategoryState extends State<ViewCategory> {
                       ],
                     ),
                     (optionAdd)
+                        ? (quotesModelEmpty!.quotesModelList[index].fav == false)
                         ? containerButton(
                         iconfind: const Icon(
                           Icons.bookmark_border,
                           color: Colors.white,
                           size: 40,
                         ),
-                        alignmentFind: const Alignment(0, 0.72),
-                        onPass: () {})
-                        : Container(),
+                        alignmentFind: const Alignment(0, 0.66),
+                        onPass: () {
+                          setState(() {
+                            favEmpty.add(quotesListGroup[index]);
+                            quotesListGroup[index]['fav'] = true;
+                          });
+                        })
+                        : containerButton(
+                        iconfind: const Icon(
+                          Icons.bookmark,
+                          color: Colors.red,
+                          size: 40,
+                        ),
+                        alignmentFind: const Alignment(0, 0.66),
+                        onPass: () {
+                          // setState(() {
+                          // quotesListGroup[index]['fav']=false;
+                          // });
+                          if(shareBool==true)
+                          {
+                            Navigator.of(context).pushNamed('/book');
+                            // quotesModelEmpty = QuotesModel.toList(iList: emptyList);
+                          }
+                          else{
+                            // quotesModelEmpty = QuotesModel.toList(iList: favEmpty);
+                            Navigator.of(context).pop();
+                          }
+                          // Navigator.of(context).pushNamed('/book');
+                        })
+                        : Container(),(optionAdd)
+                        ? Container(
+                      alignment: const Alignment(0, 0.88),
+                      child: IconButton(
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all(
+                                Colors.white12)),
+                        onPressed: () {
+                          setState(() {
+                            optionAdd = false;
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      ),
+                    )
+                        : Stack(
+                      children: [
+                        containerButton(
+                            iconfind: const Icon(
+                              Icons.share,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                            alignmentFind: const Alignment(0, 0.55),
+                            onPass: () {
+                              setState(() {
+                                imageBool = false;
+                                shareTextFind = quotesModelEmpty!
+                                    .quotesModelList[
+                                index]
+                                    .quotes!;
+                                shareTextFindTwo = quotesModelEmpty!
+                                    .quotesModelList[
+                                index]
+                                    .author!;
+                              });
+                              // Share.share('check out my website https://example.com');
+                              Navigator.of(context)
+                                  .pushNamed('/screen');
+                            }),
+                        containerButton(
+                            iconfind: const Icon(
+                              Icons.download_for_offline_outlined,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                            alignmentFind: const Alignment(0.5, 0.66),
+                            onPass: () {
+                              setState(() {
+                                imageBool = true;
+                                shareTextFind = quotesModelEmpty!
+                                    .quotesModelList[index]
+                                    .quotes!;
+                                shareTextFindTwo = quotesModelEmpty!
+                                    .quotesModelList[
+                                index]
+                                    .author!;
+                                Navigator.of(context)
+                                    .pushNamed('/screen');
+                              });
+                            }),
+                        containerButton(
+                            iconfind: const Icon(
+                              Icons.format_paint_outlined,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                            alignmentFind:
+                            const Alignment(-0.5, 0.66),
+                            onPass: () {
+                              Navigator.of(context)
+                                  .pushNamed('/backview');
+                            }),
+                        containerButton(
+                            iconfind: const Icon(
+                              Icons.navigate_before,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                            alignmentFind:
+                            const Alignment(0.62, 0.88),
+                            onPass: () {
+                              Navigator.of(context).pop();
+                            }),
+                        containerButton(
+                            iconfind: const Icon(
+                              Icons.copy,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                            alignmentFind:
+                            const Alignment(-0.62, 0.88),
+                            onPass: () {
+                              Clipboard.setData(ClipboardData(
+                                  text: quotesModelEmpty!
+                                      .quotesModelList[
+                                  index]
+                                      .quotes!));
+                            }),
+                        containerButton(
+                          iconfind: const Icon(
+                            Icons.cancel_outlined,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                          alignmentFind: const Alignment(0, 0.88),
+                          onPass: () {
+                            setState(() {
+                              optionAdd = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ],
                 );
               },
-            ),
-            (optionAdd)
-                ? Container(
-              alignment: const Alignment(0, 0.8),
-              child: IconButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                    WidgetStateProperty.all(Colors.white12)),
-                onPressed: () {
-                  setState(() {
-                    optionAdd = false;
-                  });
-                },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 40,
-                ),
-              ),
-            )
-                : Stack(
-              children: [
-                containerButton(
-                    iconfind: const Icon(
-                      Icons.share,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                    alignmentFind: const Alignment(0, 0.55),
-                    onPass: () {
-                      imageBool=false;
-                      // Share.share('check out my website https://example.com');
-                      Navigator.of(context).pushNamed('/screen');
-                    }),
-                containerButton(
-                    iconfind: const Icon(
-                      Icons.download_for_offline_outlined,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                    alignmentFind: const Alignment(0.5, 0.66),
-                    onPass: () {
-                      setState(() {
-                        imageBool=true;
-                        if(selectIndexCopy == -1){
-                          selectIndexCopy=quotesModelEmpty!.quotesModelList.length-1;
-                        }
-                        Navigator.of(context).pushNamed('/screen');
-                      });
-                    }),
-                containerButton(
-                    iconfind: const Icon(
-                      Icons.format_paint_outlined,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                    alignmentFind: const Alignment(-0.5, 0.66),
-                    onPass: () {
-                      Navigator.of(context).pushNamed('/backview');
-                    }),
-                containerButton(
-                    iconfind: const Icon(
-                      Icons.navigate_before,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                    alignmentFind: const Alignment(0.62, 0.88),
-                    onPass: () {
-                      Navigator.of(context).pop();
-                    }),
-                containerButton(
-                    iconfind: const Icon(
-                      Icons.copy,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                    alignmentFind: const Alignment(-0.62, 0.88),
-                    onPass: () {
-                      Clipboard.setData(ClipboardData(
-                          text: (selectIndexCopy != -1)
-                              ? quotesModelEmpty!
-                              .quotesModelList[selectIndexCopy]
-                              .quotes!
-                              : quotesModelEmpty!
-                              .quotesModelList[quotesModelEmpty!
-                              .quotesModelList.length -
-                              1]
-                              .quotes!));
-                    }),
-                containerButton(
-                  iconfind: const Icon(
-                    Icons.cancel_outlined,
-                    color: Colors.white,
-                    size: 40,
-                  ),
-                  alignmentFind: const Alignment(0, 0.8),
-                  onPass: () {
-                    setState(() {
-                      optionAdd = true;
-                    });
-                  },
-                ),
-              ],
             ),
           ],
         ),
       ),
     );
   }
+}
   Container containerButton(
       {required Icon iconfind,
         required Alignment alignmentFind,
@@ -222,4 +270,3 @@ class _ViewCategoryState extends State<ViewCategory> {
 
     );
   }
-}
