@@ -16,6 +16,10 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
+https://github.com/Prafulpatnecha/quotes_app/assets/144161200/68fa8d31-998c-4972-bfc1-5f57b62cc450
+
+
+
 <h2>➡️Quotes App</h2>
 <hr>
 <p>
