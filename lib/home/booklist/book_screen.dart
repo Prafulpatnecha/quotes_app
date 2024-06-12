@@ -18,7 +18,8 @@ class _BookScreenState extends State<BookScreen> {
     double w=MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-
+        centerTitle: true,
+        title: const Text('BookMark'),
       ),
         body:Container(
           height: h,
