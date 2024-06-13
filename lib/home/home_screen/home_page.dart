@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
 import 'package:share_extend/share_extend.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
@@ -362,10 +363,39 @@ class _ScreenShortState extends State<ScreenShort> {
                   final path = await getApplicationCacheDirectory();
                   File file = File("${path.path}/img.png");
                   file.writeAsBytes(img);
+                  // int location= WallpaperManager.HOME_SCREEN;
+                  // bool result=await WallpaperManager.clearWallpaper();
+                  // result=await WallpaperManager.setWallpaperFromFile(file.path, location);
                   ShareExtend.share(file.path, "image");
                 },
                 icon: const Icon(
                   Icons.share,
+                )),
+          ),
+          Align(
+            alignment: const Alignment(0.09, 0.88),
+            child: IconButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(Colors.white12),
+                  iconSize: WidgetStateProperty.all(30),
+                ),
+                onPressed: () async {
+                  RenderRepaintBoundary boundary = imageKey.currentContext!
+                      .findRenderObject() as RenderRepaintBoundary;
+                  ui.Image imageUi = await boundary.toImage();
+                  ByteData? byteData =
+                      await imageUi.toByteData(format: ui.ImageByteFormat.png);
+                  Uint8List img = byteData!.buffer.asUint8List();
+                  final path = await getApplicationCacheDirectory();
+                  File file = File("${path.path}/img.png");
+                  file.writeAsBytes(img);
+                  int location= WallpaperManager.HOME_SCREEN;
+                  bool result=await WallpaperManager.clearWallpaper();
+                  result=await WallpaperManager.setWallpaperFromFile(file.path, location);
+                  // ShareExtend.share(file.path, "image");
+                },
+                icon: const Icon(
+                  Icons.wallpaper,
                 )),
           ),
         ],
