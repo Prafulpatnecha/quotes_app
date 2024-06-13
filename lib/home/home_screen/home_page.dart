@@ -372,6 +372,7 @@ class _ScreenShortState extends State<ScreenShort> {
                   Icons.share,
                 )),
           ),
+
           Align(
             alignment: const Alignment(0.09, 0.88),
             child: IconButton(
