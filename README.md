@@ -37,3 +37,7 @@ https://github.com/Prafulpatnecha/quotes_app/assets/144161200/68fa8d31-998c-4972
 </a>
 </p>
 <hr>
+<h2>Upgrade Work</h2>
+
+https://github.com/Prafulpatnecha/quotes_app/assets/144161200/29790bf2-9b6d-4a92-bab2-7c585b12f9e7
+
